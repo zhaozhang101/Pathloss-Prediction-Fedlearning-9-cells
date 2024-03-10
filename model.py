@@ -45,9 +45,10 @@ class DoraNet(nn.Module):
         self.input = torch.randn([1, 1024, 12, 12], requires_grad=False, dtype=torch.float32) * 0.1
 
     def forward(self, pos):
+
         self.pre_pl = self.mcl(self.input.to(pos.device))
         prepathloss = extract_PL(self.pre_pl, pos)
-        # power [-131 ~ -57]
+
         return prepathloss, self.pre_pl
         # b 4 374 374
 

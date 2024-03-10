@@ -44,10 +44,11 @@ class Client:  # as a user
                 #   -81.95750666978137 18.060331759145292
                 #   -84.59552483282998 20.14371746595895
                 #   -82.58517819098684 21.263828579168226
-                pre_pathloss = pre_pathloss * torch.tensor([14.35, 18.06, 20.14, 21.26],device=pre_pathloss.device) + torch.tensor(
-                    [-83.63, -81.95, -84.59, -82.58],device=pre_pathloss.device)
-                loss = self.model.loss(pre_pathloss, pathloss)  # 直接法
-                # loss = self.model.loss(gt_pathloss, pre_pl) # 矩阵法
+
+                # pre_pathloss = pre_pathloss * torch.tensor([14.35, 18.06, 20.14, 21.26],device=pre_pathloss.device) + torch.tensor(
+                #     [-83.63, -81.95, -84.59, -82.58],device=pre_pathloss.device)
+                loss = self.model.loss(pre_pathloss, pathloss)  # 直接法误差
+                # loss = self.model.loss(gt_pathloss, pre_pl) # 矩阵法误差
                 loss.backward()
                 LOS.append(loss.item())
                 optimizer.step()
